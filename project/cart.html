@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Tittel og meta-informasjon -->
+  <title>Cart - ElektronikkButikken</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+  
+  <!-- CSS-stiler -->
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  
+  <!-- JavaScript-biblioteker -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/cart.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "f8Vt3OapkK4NB47qs", // Replace with your actual public key
+      });
+    })();
+  </script>
+
+  <style>
+    .cart-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+    }
+    .cart-item .item-details {
+      flex: 1;
+    }
+    .cart-item .item-details h3 {
+      margin: 0;
+    }
+    .cart-item .item-details p {
+      margin: 5px 0;
+    }
+    .cart-item .item-details .price {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .cart-item .item-details .quantity {
+      font-size: 1em;
+      color: #666;
+    }
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .quantity-controls button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .quantity-controls button:hover {
+      background-color: #0056b3;
+    }
+    .quantity-controls input {
+      width: 50px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    .clear-cart-button {
+      background-color: #dc3546;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 20px;
+    }
+    .clear-cart-button:hover {
+      background-color: #c82333;
+    }
+    .empty-cart-message {
+      font-size: 1.2em;
+      color: #666;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .checkout-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      width: 600px;
+      max-width: 90%;
+      max-height: 80%; /* Limit height to 80% of the viewport */
+      overflow-y: auto; /* Add vertical scrolling if content exceeds height */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Meny -->
+  <div class="menu-container">
+    <div class="menu">
+      <div class="menu-table">
+        <a class="menu-index" href="index.html">Hjem</a>
+        <a class="menu-omoss" href="om-oss.html">Om Oss</a>
+        <a class="menu-kontaktoss" href="kontakt-oss.html">Kontakt Oss</a>
+        <div class="dropdown">
+          <a class="dropbtn" href="alleproduk.html">Alle produkter!<i class="fas fa-caret-down"></i></a>
+          <div class="dropdown-content">
+            <a href="index.html">Hjem</a>
+            <a href="om-oss.html">Om Oss</a>
+            <a href="kontakt-oss.html">Kontakt Oss</a>
+            <a href="hvitevarer.html">Hvitevarer</a>
+            <a href="pc.html">PC og Data</a>
+            <a href="produkt/telefon.html">Telefoner</a>
+            <a href="produkt/kamera.html">Kameraer</a>
+            <a href="produkt/powerbank.html">Powerbanks</a>
+            <a href="produkt/klokke.html">Klokker</a>
+            <a href="produkt/ladar.html">Ladere</a>
+            <a href="produkt/airpods-headsett.html">AirPods & Headsett</a>
+          </div>
+        </div>
+        <!-- Handlekurv-ikon -->
+        <div class="cart-icon">
+          <a href="cart.html"><img src="img/cart-icon.png" alt="Cart"></a>
+          <span class="cart-count">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Innhold -->
+  <div class="content-container">
+    <div class="content">
+      <div class="cart-page">
+        <h2>Din handlekurv</h2>
+        <!-- Handlekurv-elementer -->
+        <div class="cart-items"></div>
+        <!-- Tom handlekurv-melding -->
+        <p class="empty-cart-message" style="display: none;">Du har ingen produkter i handlekurven.</p>
+        <!-- Tøm handlekurv-knapp -->
+        <button class="clear-cart-button" style="display: none;">Tøm handlekurv</button>
+        <!-- Totalpris -->
+        <p class="cart-total" style="font-size: 1.5em; font-weight: bold; text-align: right; margin-top: 20px;">Total: 0 NOK</p>
+        <p class="tax-included-note" style="font-size: 0.9em; color: #666; text-align: right; margin-top: 5px;">* Alle priser inkluderer mva.</p>
+        
+        <!-- Coupon code section -->
+        <div class="coupon-section" style="margin-top: 20px;">
+          <label for="coupon-code" style="font-weight: bold;">Kupongkode:</label>
+          <input type="text" id="coupon-code" name="coupon-code" placeholder="Skriv inn kupongkode" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+          <button type="button" class="apply-coupon-button" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Bruk kode</button>
+          <p class="coupon-message" style="color: green; margin-top: 10px; display: none;">Kupongkode brukt!</p>
+        </div>
+        
+        <!-- Gå til kassen-knapp -->
+        <button class="checkout-button" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; display: none;">Gå til kassen</button>
+      </div>
+
+      <!-- Pop-up modal for checkout -->
+      <div class="checkout-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; width: 600px; max-width: 90%; max-height: 80%; overflow-y: auto;">
+        <h3>Gå til kassen</h3>
+        <p>Her kan du fylle inn din informasjon for å fullføre kjøpet.</p>
+        
+        <form id="checkout-form">
+          <div class="step-1">
+            <div style="margin-bottom: 10px;">
+              <label for="name">Navn:</label>
+              <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="address">Adresse:</label>
+              <input type="text" id="address" name="address" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="city">By:</label>
+              <input type="text" id="city" name="city" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="city-code">Postnummer:</label>
+              <input type="text" id="city-code" name="city-code" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="phone">Telefonnummer:</label>
+              <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="email">E-post:</label>
+              <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <button type="button" class="next-button" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Neste</button>
+          </div>
+          <div class="step-2" style="display: none;">
+            <h4>Fakturaadresse</h4>
+            <div style="margin-bottom: 10px;">
+              <label for="billing-name">Navn:</label>
+              <input type="text" id="billing-name" name="billing-name" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="billing-address">Adresse:</label>
+              <input type="text" id="billing-address" name="billing-address" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="billing-city">By:</label>
+              <input type="text" id="billing-city" name="billing-city" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="billing-city-code">Postnummer:</label>
+              <input type="text" id="billing-city-code" name="billing-city-code" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <button type="button" class="back-button-1" style="background-color: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Tilbake</button>
+            <button type="button" class="next-button-2" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Neste</button>
+          </div>
+          <div class="step-3" style="display: none;">
+            <h4>Kredittkortinformasjon</h4>
+            <div style="margin-bottom: 10px;">
+              <label for="card-number">Kortnummer:</label>
+              <input type="text" id="card-number" name="card-number" value="1234 1234 1234 1234" readonly style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="expiry-date">Utløpsdato:</label>
+              <input type="text" id="expiry-date" name="expiry-date" value="12/34" readonly style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+              <label for="cvv">CVV:</label>
+              <input type="text" id="cvv" name="cvv" value="123" readonly style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <button type="button" class="back-button-2" style="background-color: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Tilbake</button>
+            <button type="submit" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Fullfør kjøp</button>
+          </div>
+        </form>
+        <button class="close-modal" style="background-color: #dc3546; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Lukk</button>
+      </div>
+      <div class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer-container"></div>
+  
+  <!-- Inline JavaScript -->
+  <script>
+    $(document).ready(function () {
+      // Hent handlekurven fra localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+      const productData = JSON.parse(localStorage.getItem('productData')) || {}; // Ensure productData is loaded
+      const $cartItems = $('.cart-items');
+      const $emptyCartMessage = $('.empty-cart-message');
+      const $clearCartButton = $('.clear-cart-button');
+
+      // Render cart items
+      function renderCart() {
+        $cartItems.empty();
+        let totalCartPrice = 0; // Initialize total price
+        if (cart.length === 0) {
+          $emptyCartMessage.show();
+          $clearCartButton.hide();
+          $('.cart-total').hide(); // Hide total price when cart is empty
+          $('.checkout-button').hide(); // Hide checkout button
+        } else {
+          // Add header row for "Antall", "Pris", "Totalt", and "Slett"
+          $cartItems.append(`
+            <div class="cart-header" style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+              <div style="flex: 2;">Produkt</div>
+              <div style="flex: 1; text-align: center;">Antall</div>
+              <div style="flex: 1; text-align: center;">Pris</div>
+              <div style="flex: 1; text-align: center;">Totalt</div>
+              <div style="flex: 0.5; text-align: center;">Slett</div>
+            </div>
+          `);
+
+          cart.forEach(product => {
+            const productInfo = productData[product.id] || {};
+            const remainingStock = stockData[product.id] || 0;
+            const unitPrice = productInfo.price || 0;
+            const discount = productInfo.discount || 0; // Discount amount
+            const discountedPrice = unitPrice - discount;
+            const totalPrice = discountedPrice * product.quantity;
+            totalCartPrice += totalPrice; // Add to total price
+
+            const $item = $(`
+              <div class="cart-item" data-product-id="${product.id}" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                <div style="flex: 2; display: flex; align-items: center;">
+                  <img src="${productInfo.image || 'img/default.jpg'}" alt="${productInfo.name || 'Produkt'}" style="width: 100px; height: 100px; margin-right: 20px;">
+                  <div>
+                    <h3 style="margin: 0;">${productInfo.name || 'Produkt'}</h3>
+                    <p style="margin: 5px 0;">${productInfo.description || ''}</p>
+                    <p style="margin: 5px 0;">Varenr: ${product.id}</p>
+                    <p class="stock" style="color: ${remainingStock > 0 ? 'green' : 'orange'}; margin: 5px 0;">
+                      ${remainingStock > 0 ? `${remainingStock} stk. på lager` : 'Forventet på lager snart'}
+                    </p>
+                    ${discount > 0 ? `<p class="discount" style="background-color: #e0f7fa; color: #007bff; padding: 5px; border-radius: 5px; margin: 5px 0;">Rabatt: ${discount.toFixed(2)} NOK</p>` : ''}
+                  </div>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                  <div class="quantity-controls" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                    <button class="decrease-button" data-product-id="${product.id}" style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">-</button>
+                    <input type="number" class="quantity-input" data-product-id="${product.id}" value="${product.quantity}" min="0" max="${remainingStock}" style="width: 50px; text-align: center; border: 1px solid #ddd; border-radius: 5px; padding: 5px;">
+                    <button class="increase-button" data-product-id="${product.id}" style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">+</button>
+                  </div>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                  <p class="price" style="margin: 0; text-decoration: ${discount > 0 ? 'line-through' : 'none'};">${unitPrice.toFixed(2)} NOK</p>
+                  ${discount > 0 ? `<p class="discounted-price" style="color: green; margin: 0;">${discountedPrice.toFixed(2)} NOK</p>` : ''}
+                </div>
+                <div style="flex: 1; text-align: center;">
+                  <p class="total-price" style="margin: 0;">${totalPrice.toFixed(2)} NOK</p>
+                </div>
+                <div style="flex: 0.5; text-align: center;">
+                  <button class="remove-button" data-product-id="${product.id}" style="background-color: #dc3546; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">&times;</button>
+                </div>
+              </div>
+            `);
+            $cartItems.append($item);
+          });
+          $emptyCartMessage.hide();
+          $clearCartButton.show();
+          $('.cart-total').show().text(`Total: ${totalCartPrice.toFixed(2)} NOK`); // Update total price
+          $('.checkout-button').show(); // Show checkout button
+        }
+      }
+
+      // Handle quantity input changes
+      $cartItems.on('change', '.quantity-input', function () {
+        const productId = $(this).data('product-id');
+        const newQuantity = parseInt($(this).val());
+        const productIndex = cart.findIndex(item => item.id === productId);
+        const product = cart[productIndex];
+        const remainingStock = stockData[productId] || 0;
+
+        if (newQuantity >= 0 && newQuantity <= (remainingStock + product.quantity)) {
+          const stockChange = newQuantity - product.quantity; // Calculate stock change
+          product.quantity = newQuantity;
+          stockData[productId] -= stockChange; // Update stock
+
+          if (newQuantity === 0) {
+            // Ask for confirmation before removing the product
+            const confirmRemoval = confirm('Er du sikker på at du vil fjerne dette produktet fra handlekurven?');
+            if (confirmRemoval) {
+              cart.splice(productIndex, 1); // Remove product from cart
+            } else {
+              $(this).val(product.quantity); // Reset to the previous valid quantity
+              return;
+            }
+          }
+
+          localStorage.setItem('cart', JSON.stringify(cart));
+          localStorage.setItem('stockData', JSON.stringify(stockData));
+          renderCart();
+          updateCartCount();
+        } else {
+          alert('Ugyldig mengde! Sjekk lagerstatus.');
+          $(this).val(product.quantity); // Reset to the previous valid quantity
+        }
+      });
+
+      // Add click event for "+" button
+      $cartItems.on('click', '.increase-button', function () {
+        const productId = $(this).data('product-id');
+        const $input = $(`.quantity-input[data-product-id="${productId}"]`);
+        const currentQuantity = parseInt($input.val());
+        const remainingStock = stockData[productId] || 0;
+
+        if (remainingStock > 0) {
+          $input.val(currentQuantity + 1).trigger('change');
+        } else {
+          alert('Ikke nok produkter på lager!');
+        }
+      });
+
+      // Add click event for "-" button
+      $cartItems.on('click', '.decrease-button', function () {
+        const productId = $(this).data('product-id');
+        const $input = $(`.quantity-input[data-product-id="${productId}"]`);
+        const currentQuantity = parseInt($input.val());
+
+        if (currentQuantity > 0) {
+          $input.val(currentQuantity - 1).trigger('change');
+        }
+      });
+
+      // Handle remove button click
+      $cartItems.on('click', '.remove-button', function () {
+        const productId = $(this).data('product-id');
+        const productIndex = cart.findIndex(item => item.id === productId);
+
+        if (productIndex !== -1) {
+          const confirmRemoval = confirm('Er du sikker på at du vil fjerne dette produktet fra handlekurven?');
+          if (confirmRemoval) {
+            const removedProduct = cart[productIndex];
+            stockData[productId] += removedProduct.quantity; // Restore stock
+            cart.splice(productIndex, 1); // Remove product from cart
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('stockData', JSON.stringify(stockData));
+            renderCart();
+            updateCartCount();
+          }
+        }
+      });
+
+      // Clear cart
+      $clearCartButton.on('click', function () {
+        // Add all products back to stock
+        cart.forEach(product => {
+          const productId = product.id;
+          const quantity = product.quantity;
+          stockData[productId] = (stockData[productId] || 0) + quantity;
+        });
+
+        // Reset the cart array
+        cart = [];
+        localStorage.setItem('stockData', JSON.stringify(stockData)); // Update stock in localStorage
+        localStorage.removeItem('cart'); // Remove cart data from localStorage
+        renderCart(); // Re-render the cart UI
+        updateCartCount(); // Update the cart count in the menu
+      });
+
+      // Update cart count
+      function updateCartCount() {
+        const totalCount = cart.reduce((acc, product) => acc + product.quantity, 0);
+        $('.cart-count').text(totalCount);
+      }
+
+      // Open checkout modal
+      $('.checkout-button').on('click', function () {
+        const totalCartPrice = parseFloat($('.cart-total').text().replace('Total: ', '').replace(' NOK', '')) || 0;
+        $('.checkout-modal').fadeIn();
+        $('.modal-overlay').fadeIn();
+      });
+
+      // Close checkout modal
+      $('.close-modal, .modal-overlay').on('click', function () {
+        $('.checkout-modal').fadeOut();
+        $('.modal-overlay').fadeOut();
+      });
+
+      // Handle "Neste" button click
+      $('.next-button').on('click', function () {
+        $('.step-1').hide();
+        $('.step-2').show();
+      });
+
+      // Handle "Neste" button for step 2
+      $('.next-button-2').on('click', function () {
+        $('.step-2').hide();
+        $('.step-3').show();
+      });
+
+      // Handle "Tilbake" button for step 2
+      $('.back-button-1').on('click', function () {
+        $('.step-2').hide();
+        $('.step-1').show();
+      });
+
+      // Handle "Tilbake" button for step 3
+      $('.back-button-2').on('click', function () {
+        $('.step-3').hide();
+        $('.step-2').show();
+      });
+
+      // Handle form submission
+      $('#checkout-form').on('submit', function (e) {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = $(this).serializeArray();
+        const orderDetails = {
+          customerInfo: {},
+          cartItems: cart,
+          totalPrice: cart.reduce((acc, product) => {
+            const productInfo = productData[product.id] || {};
+            const unitPrice = productInfo.price || 0;
+            return acc + unitPrice * product.quantity;
+          }, 0),
+          orderDate: new Date().toISOString(),
+        };
+
+        // Map form data to customerInfo
+        formData.forEach(field => {
+          orderDetails.customerInfo[field.name] = field.value;
+        });
+
+        console.log("Preparing to send email with the following details:", orderDetails);
+
+        // Send email using EmailJS
+        emailjs.send("service_2h1q5im", "template_touueie", {
+          customer_name: orderDetails.customerInfo.name,
+          email: orderDetails.customerInfo.email, // Use {{email}} placeholder
+          price: orderDetails.customerInfo.price,
+          order_details: JSON.stringify(orderDetails.cartItems, null, 2),
+          total_price: orderDetails.totalPrice.toFixed(2),
+        }).then(function (response) {
+          console.log("Email sent successfully:", response);
+          alert('Takk for din bestilling! En bekreftelse er sendt til din e-post.');
+        }).catch(function (error) {
+          console.error("Error sending email:", error);
+          alert('Kunne ikke sende e-post. Prøv igjen senere.');
+        });
+
+        // Save order to localStorage
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(orderDetails);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        // Clear cart and reset UI
+        cart = [];
+        localStorage.removeItem('cart');
+        renderCart();
+        updateCartCount();
+
+        // Close modal
+        $('.checkout-modal').fadeOut();
+        $('.modal-overlay').fadeOut();
+
+        alert('Takk for din bestilling! Din informasjon er lagret.');
+      });
+
+      // Handle coupon code application
+      $('.apply-coupon-button').on('click', function () {
+        const couponCode = $('#coupon-code').val().trim();
+        const validCoupons = {  "STUDENT10": 0.1 };
+        const discount = validCoupons[couponCode];
+
+        if (discount) {
+          const totalCartPrice = cart.reduce((acc, product) => {
+            const productInfo = productData[product.id] || {};
+            const unitPrice = productInfo.price || 0;
+            return acc + unitPrice * product.quantity;
+          }, 0);
+          const discountedPrice = totalCartPrice * (1 - discount);
+          $('.cart-total').text(`Total: ${discountedPrice.toFixed(2)} NOK`);
+          $('.checkout-total-price').text(`Totalpris: ${discountedPrice.toFixed(2)} NOK`); // Update checkout modal price
+          $('.coupon-message').text('Kupongkode brukt!').css('color', 'green').show();
+        } else {
+          $('.coupon-message').text('Ugyldig kupongkode!').css('color', 'red').show();
+        }
+      });
+
+      // Oppdater handlekurven når siden lastes
+      renderCart();
+      updateCartCount();
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      updateCartCount();
+    });
+  </script>
+</body>
+
+</html>

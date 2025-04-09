@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Søk - ElektronikkButikken</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+  <!-- CSS-stiler -->
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  
+  <!-- JavaScript-biblioteker -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/cart.js"></script>
+  <style>
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 16px;
+      text-align: center;
+      margin: 16px;
+      flex: 1 1 calc(50% - 32px);
+      box-sizing: border-box;
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .product-card h3 {
+      margin: 16px 0 8px;
+    }
+    .product-card p {
+      margin: 8px 0;
+    }
+    .product-card .price {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .product-card .buy-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .product-card .buy-button:hover {
+      background-color: #0056b3;
+    }
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .empty-results {
+      text-align: center;
+      font-size: 1.2em;
+      color: #666;
+      margin-top: 20px;
+    }
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Meny -->
+  <div class="menu-container">
+    <div class="menu">
+      <div class="menu-table flex-row-space-between">
+        <div class="logo flex-row-center">
+          <a href="index.html">ElektronikkButikken</a>
+        </div>
+        <div class="menu-items flex-row-center flex-item">
+          <a class="menu-index" href="index.html">Hjem</a>
+          <a class="menu-omoss" href="om-oss.html">Om Oss</a>
+          <a class="menu-kontaktoss" href="kontakt-oss.html">Kontakt Oss</a>
+          <div class="dropdown">
+            <a class="dropbtn" href="alleproduk.html">Alle produkter!<i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-content">
+              <a href="index.html">Hjem</a>
+              <a href="om-oss.html">Om Oss</a>
+              <a href="kontakt-oss.html">Kontakt Oss</a>
+              <a href="hvitevarer.html">Hvitevarer</a>
+              <a href="pc.html">PC og Data</a>
+              <a href="telefon.html">Telefoner</a>
+              <a href="kamera.html">Kameraer</a>
+              <a href="powerbank.html">Powerbanks</a>
+              <a href="klokke.html">Klokker</a>
+              <a href="ladar.html">Ladere</a>
+              <a href="airpods-headsett.html">AirPods & Headsett</a>
+            </div>
+          </div>
+          <div class="search-bar">
+            <form action="search.html" method="get">
+              <input type="text" name="query" placeholder="Søk etter produkter..." aria-label="Search">
+              <button type="submit">Søk</button>
+            </form>
+          </div>
+          <div class="cart-icon">
+            <a href="cart.html"><img src="img/cart-icon.png" alt="Cart" style="width:70px;height:40px;"></a>
+            <span class="cart-count">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Innhold -->
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h2>Søkeresultater</h2>
+            <div class="products-container" id="results">
+              <!-- Search results will appear here -->
+            </div>
+            <p class="empty-results" style="display: none;">Ingen produkter funnet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-container"></div>
+
+  <div class="notification" id="cart-notification">Produkt lagt til i handlekurven!</div>
+
+  <script>
+    let products = [];
+
+    // Fetch products from products.json
+    fetch('produkter/products.json')
+      .then(response => response.json())
+      .then(data => {
+        products = data;
+        performSearch(); // Perform search on page load if query exists
+      })
+      .catch(error => console.error('Error fetching products:', error));
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function performSearch() {
+      const query = getQueryParam('query')?.toLowerCase() || '';
+      const resultsDiv = document.getElementById('results');
+      const emptyResults = document.querySelector('.empty-results');
+      resultsDiv.innerHTML = '';
+
+      if (query) {
+        const filteredProducts = products.filter(product =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query)
+        );
+
+        if (filteredProducts.length > 0) {
+          emptyResults.style.display = 'none';
+          filteredProducts.forEach(product => {
+            const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItem = cart.find(item => item.id === product.id);
+            const cartQuantity = cartItem ? cartItem.quantity : 0;
+            const availableStock = (stockData[product.id] ?? product.stock) - cartQuantity;
+
+            const productCard = `
+              <div class="product-card" data-product-id="${product.id}">
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p class="price">${product.price} NOK</p>
+                <p class="stock-count">På lager: ${availableStock > 0 ? availableStock : 'Utsolgt'}</p>
+                <button class="buy-button" onclick="addToCart(${product.id})" ${availableStock <= 0 ? 'disabled' : ''}>
+                  ${availableStock > 0 ? 'Kjøp nå' : 'Utsolgt'}
+                </button>
+              </div>
+            `;
+            resultsDiv.innerHTML += productCard;
+          });
+        } else {
+          emptyResults.style.display = 'block';
+        }
+      } else {
+        emptyResults.style.display = 'block';
+      }
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+      const stock = stockData[productId] ?? product.stock;
+
+      if (stock > 0) {
+        const existingProduct = cart.find(item => item.id === productId);
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          cart.push({ id: product.id, quantity: 1 });
+        }
+
+        stockData[productId] = stock - 1; // Decrease stock
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('stockData', JSON.stringify(stockData));
+
+        const updatedStock = stockData[productId];
+        const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+        if (productCard) {
+          const stockCountElement = productCard.querySelector('.stock-count');
+          if (updatedStock === 0) {
+            
+            stockCountElement.textContent = 'Utsolgt'; // Update stock display
+          } else {
+            stockCountElement.textContent = `På lager: ${updatedStock}`;
+          }
+        }
+      } else {
+        alert('Produktet er utsolgt!');
+      }
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+      document.querySelector('.cart-count').textContent = totalCount;
+    }
+
+    function showNotification() {
+      const notification = document.getElementById('cart-notification');
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+    });
+
+    
+  </script>
+</body>
+
+</html>

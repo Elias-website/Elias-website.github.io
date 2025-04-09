@@ -1,0 +1,327 @@
+[
+  {
+    "id": 1,
+    "name": "Kjøleskap Frost",
+    "description": "Stilrent kjøleskap med frostfri teknologi.",
+    "price": 7500,
+    "image": "img/p1.png",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "name": "Oppvaskmaskin Clean",
+    "description": "Kompakt oppvaskmaskin med energiklasse A+.",
+    "price": 5000,
+    "image": "img/p2.png",
+    "stock": 8
+  },
+  {
+    "id": 3,
+    "name": "Kjøleskap Rapid",
+    "description": "Effektivt kjøleskap med hurtigkjøling.",
+    "price": 15000,
+    "image": "img/p3.jpg",
+    "stock": 6
+  },
+  {
+    "id": 4,
+    "name": "Vaskemaskin Breeze",
+    "description": "Moderne Vaskemaskin med lavt energiforbruk.",
+    "price": 7000,
+    "image": "img/p4.png",
+    "stock": 5
+  },
+  {
+    "id": 5,
+    "name": "Komfyr Smart",
+    "description": "Smart komfyr med innebygd Wi-Fi og touch-kontroll.",
+    "price": 8500,
+    "image": "img/p5.png",
+    "stock": 4
+  },
+  {
+    "id": 6,
+    "name": "Bærbar PC Basic",
+    "description": "Prisgunstig bærbar PC for hverdagsbruk.",
+    "price": 4500,
+    "image": "img/p6.png",
+    "stock": 10
+  },
+  {
+    "id": 7,
+    "name": "Gaming PC Ultra",
+    "description": "Høyytelses gaming PC med kraftig grafikkort.",
+    "price": 15000,
+    "image": "img/p7.png",
+    "stock": 5
+  },
+  {
+    "id": 8,
+    "name": "All-in-One PC",
+    "description": "Kompakt alt-i-ett PC med touch-skjerm.",
+    "price": 8000,
+    "image": "img/p8.png",
+    "stock": 7
+  },
+  {
+    "id": 9,
+    "name": "Kontor PC Pro",
+    "description": "Effektiv PC for kontorbruk med rask prosessor.",
+    "price": 6000,
+    "image": "img/p9.png",
+    "stock": 8
+  },
+  {
+    "id": 10,
+    "name": "Ultrabook Slim",
+    "description": "Lett og tynn ultrabook med lang batteritid.",
+    "price": 12000,
+    "image": "img/p10.png",
+    "stock": 6
+  },
+  {
+    "id": 11,
+    "name": "Gaming Laptop Max",
+    "description": "Kraftig gaming laptop med avansert kjøling.",
+    "price": 18000,
+    "image": "img/p11.png",
+    "stock": 4
+  },
+  {
+    "id": 12,
+    "name": "Trådløs Mus Pro",
+    "description": "Presis trådløs mus med ergonomisk design.",
+    "price": 700,
+    "image": "img/p12.png",
+    "stock": 15
+  },
+  {
+    "id": 13,
+    "name": "Mekanisk Tastatur RGB",
+    "description": "Gaming-tastatur med RGB-belysning og mekaniske taster.",
+    "price": 2000,
+    "image": "img/p13.png",
+    "stock": 12
+  },
+  {
+    "id": 14,
+    "name": "4K Skjerm",
+    "description": "Høyoppløselig 4K-skjerm for arbeid og gaming.",
+    "price": 8000,
+    "image": "img/p14.png",
+    "stock": 7
+  },
+  {
+    "id": 15,
+    "name": "Ekstern Harddisk",
+    "description": "1TB ekstern harddisk for sikker lagring.",
+    "price": 1000,
+    "image": "img/p15.png",
+    "stock": 15
+  },
+  {
+    "id": 16,
+    "name": "Produkt 16",
+    "description": "Beskrivelse av produkt 16.",
+    "price": 6000,
+    "image": "img/p16.png",
+    "stock": 10
+  },
+  {
+    "id": 17,
+    "name": "Produkt 17",
+    "description": "Beskrivelse av produkt 17.",
+    "price": 7000,
+    "image": "img/p17.png",
+    "stock": 8
+  },
+  {
+    "id": 18,
+    "name": "Produkt 18",
+    "description": "Beskrivelse av produkt 18.",
+    "price": 8000,
+    "image": "img/p18.png",
+    "stock": 6
+  },
+  {
+    "id": 19,
+    "name": "Produkt 19",
+    "description": "Beskrivelse av produkt 19.",
+    "price": 9000,
+    "image": "img/p19.png",
+    "stock": 4
+  },
+  {
+    "id": 20,
+    "name": "Produkt 20",
+    "description": "Beskrivelse av produkt 20.",
+    "price": 10000,
+    "image": "img/p20.png",
+    "stock": 2
+  },
+  {
+    "id": 21,
+    "name": "Produkt 21",
+    "description": "Beskrivelse av produkt 21.",
+    "price": 1100,
+    "image": "img/p21.png",
+    "stock": 10
+  },
+  {
+    "id": 22,
+    "name": "Produkt 22",
+    "description": "Beskrivelse av produkt 22.",
+    "price": 2200,
+    "image": "img/p22.png",
+    "stock": 8
+  },
+  {
+    "id": 23,
+    "name": "Produkt 23",
+    "description": "Beskrivelse av produkt 23.",
+    "price": 3300,
+    "image": "img/p23.png",
+    "stock": 6
+  },
+  {
+    "id": 24,
+    "name": "Produkt 24",
+    "description": "Beskrivelse av produkt 24.",
+    "price": 4400,
+    "image": "img/p24.png",
+    "stock": 4
+  },
+  {
+    "id": 25,
+    "name": "Produkt 25",
+    "description": "Beskrivelse av produkt 25.",
+    "price": 5500,
+    "image": "img/p25.png",
+    "stock": 12
+  },
+  {
+    "id": 26,
+    "name": "Produkt 26",
+    "description": "Beskrivelse av produkt 26.",
+    "price": 6600,
+    "image": "img/p26.png",
+    "stock": 7
+  },
+  {
+    "id": 27,
+    "name": "Produkt 27",
+    "description": "Beskrivelse av produkt 27.",
+    "price": 7700,
+    "image": "img/p27.png",
+    "stock": 5
+  },
+  {
+    "id": 28,
+    "name": "Produkt 28",
+    "description": "Beskrivelse av produkt 28.",
+    "price": 8800,
+    "image": "img/p28.png",
+    "stock": 3
+  },
+  {
+    "id": 29,
+    "name": "Produkt 29",
+    "description": "Beskrivelse av produkt 29.",
+    "price": 9900,
+    "image": "img/p29.png",
+    "stock": 2
+  },
+  {
+    "id": 30,
+    "name": "Produkt 30",
+    "description": "Beskrivelse av produkt 30.",
+    "price": 10000,
+    "image": "img/p30.png",
+    "stock": 1
+  },
+  {
+    "id": 31,
+    "name": "Produkt 31",
+    "description": "Beskrivelse av produkt 31.",
+    "price": 1200,
+    "image": "img/p31.png",
+    "stock": 10
+  },
+  {
+    "id": 32,
+    "name": "Produkt 32",
+    "description": "Beskrivelse av produkt 32.",
+    "price": 2400,
+    "image": "img/p32.png",
+    "stock": 8
+  },
+  {
+    "id": 33,
+    "name": "Produkt 33",
+    "description": "Beskrivelse av produkt 33.",
+    "price": 3600,
+    "image": "img/p33.png",
+    "stock": 6
+  },
+  {
+    "id": 34,
+    "name": "Produkt 34",
+    "description": "Beskrivelse av produkt 34.",
+    "price": 4800,
+    "image": "img/p34.png",
+    "stock": 4
+  },
+  {
+    "id": 35,
+    "name": "Produkt 35",
+    "description": "Beskrivelse av produkt 35.",
+    "price": 6000,
+    "image": "img/p35.png",
+    "stock": 2
+  },
+  {
+    "id": 36,
+    "name": "Trådløs Lader",
+    "description": "Hurtiglader for alle kompatible enheter.",
+    "price": 299,
+    "image": "img/p36.png",
+    "stock": 15,
+    "category": "ladere"
+  },
+  {
+    "id": 37,
+    "name": "USB-C Lader",
+    "description": "Kompakt og kraftig USB-C lader.",
+    "price": 199,
+    "image": "img/p37.png",
+    "stock": 20,
+    "category": "ladere"
+  },
+  {
+    "id": 38,
+    "name": "Bil Lader",
+    "description": "Lader for bruk i bilen med to USB-porter.",
+    "price": 149,
+    "image": "img/p38.png",
+    "stock": 30,
+    "category": "ladere"
+  },
+  {
+    "id": 39,
+    "name": "Multiport Lader",
+    "description": "Lader flere enheter samtidig.",
+    "price": 399,
+    "image": "img/p39.png",
+    "stock": 10,
+    "category": "ladere"
+  },
+  {
+    "id": 40,
+    "name": "Reiselader",
+    "description": "Lett og bærbar lader for reisebruk.",
+    "price": 249,
+    "image": "img/p40.png",
+    "stock": 25,
+    "category": "ladere"
+  }
+]
