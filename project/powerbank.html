@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>
+    Powerbank - ElektronikkButikken </title>
+    <link rel="icon" type="image/x-icon" href="img/test.ico">
+
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Legger til nødvendige CSS- og JS-filer -->
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/css.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/widgets.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/widgets.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/cart.js"></script>
+  <style>
+    .menu-widget {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 16px;
+      text-align: center;
+      margin: 16px;
+      flex: 1 1 calc(50% - 32px);
+      box-sizing: border-box;
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .product-card h3 {
+      margin: 16px 0 8px;
+    }
+    .product-card p {
+      margin: 8px 0;
+    }
+    .product-card .price {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .product-card .buy-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .product-card .buy-button:hover {
+      background-color: #0056b3;
+    }
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .sort-view-container {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px; 
+      margin: 6px 0;
+    }
+    .sort-container, .view-container {
+      display: flex;
+      align-items: center;
+    }
+    .sort-container select, .view-container select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .list-view .product-card {
+      flex: 1 1 100%;
+      display: flex;
+      align-items: center;
+    }
+    .list-view .product-card img {
+      max-width: 150px;
+      margin-right: 16px;
+    }
+    .list-view .product-card .details {
+      text-align: left;
+    }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+    }
+    .cart-icon img {
+      width: 30px;
+      height: 30px;
+    }
+    .cart-count {
+      position: absolute;
+      top: 2px; 
+      right: -10px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-card .stock-count {
+      display: block; /* Viser lagerstatus */
+    }
+    
+  </style>
+  <script>
+    $(document).ready(function() {
+      // Laster inn produkter fra JSON-fil
+      $.getJSON('produkter/products.json', function(products) {
+        var productsContainer = $('.products-container');
+        productsContainer.empty(); // Tømmer eksisterende produkter
+
+        // Filtrerer produkter for Powerbank-kategorien (IDs 26-27)
+        const powerbankProducts = products.filter(product => product.id >= 17 && product.id <= 18);
+
+        powerbankProducts.forEach(function(product) {
+          var productCard = `
+            <div class="product-card" data-product-id="${product.id}">
+              <img src="${product.image}" alt="${product.name}">
+              <h3>${product.name}</h3>
+              <p>${product.description}</p>
+              <p class="price">${product.price} NOK</p>
+              <p class="stock-count">På lager: ${product.stock}</p>
+              <button class="buy-button">Kjøp nå</button>
+            </div>
+          `;
+          productsContainer.append(productCard);
+        });
+
+        // Oppdaterer lagerstatus dynamisk ved sideinnlasting
+        const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+        $('.product-card').each(function() {
+          const productId = $(this).data('product-id');
+          if (stockData[productId] !== undefined) {
+            const stockCount = stockData[productId];
+            if (stockCount === 0) {
+              $(this).find('.stock-count').text('Utsolgt');
+            } else {
+              $(this).find('.stock-count').text(`På lager: ${stockCount}`);
+            }
+          }
+        });
+
+        // Legger til klikkhendelse for 'Kjøp nå'-knapper
+        $('.products-container').on('click', '.buy-button', function() {
+          const productId = $(this).closest('.product-card').data('product-id');
+          const productName = $(this).closest('.product-card').find('h3').text();
+          const productPrice = $(this).closest('.product-card').find('.price').text();
+          const productImage = $(this).closest('.product-card').find('img').attr('src');
+
+          const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+          if (stockData[productId] > 0) {
+            const product = {
+              id: productId,
+              name: productName,
+              price: productPrice,
+              image: productImage,
+            };
+
+            addToCart(product); // Legger produktet i handlekurven
+            stockData[productId] -= 1; // Reduserer lagerstatus
+            localStorage.setItem('stockData', JSON.stringify(stockData));
+            const updatedStock = stockData[productId];
+            if (updatedStock === 0) {
+              $(this).closest('.product-card').find('.stock-count').text('Utsolgt'); // Oppdaterer lagerstatusvisning
+            } else {
+              $(this).closest('.product-card').find('.stock-count').text(`På lager: ${updatedStock}`);
+            }
+          } else {
+            alert('Produktet er utsolgt!');
+          }
+        });
+      });
+
+      // Sorteringslogikk for produkter
+      $('#sort-products').change(function() {
+        var sortBy = $(this).val();
+        var products = $('.product-card').toArray();
+        products.sort(function(a, b) {
+          var priceA = parseInt($(a).find('.price').text().replace(' NOK', ''));
+          var priceB = parseInt($(b).find('.price').text().replace(' NOK', ''));
+          if (sortBy === 'price-asc') {
+            return priceA - priceB;
+          } else if (sortBy === 'price-desc') {
+            return priceB - priceA;
+          }
+        });
+        $('.products-container').html(products);
+      });
+
+      // Logikk for visningsmodus
+      $('#view-mode').change(function() {
+        var viewMode = $(this).val();
+        if (viewMode === 'list') {
+          $('.products-container').addClass('list-view');
+        } else {
+          $('.products-container').removeClass('list-view');
+        }
+      });
+
+      // Oppdaterer antall produkter i handlekurven ved sideinnlasting
+      updateCartCount();
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Meny -->
+  <div class="menu-container">
+    <div class="menu">
+      <div class="menu-table flex-row-space-between">
+        <div class="logo flex-row-center">
+          <a href="index.html">ElektronikkButikken</a>
+        </div>
+        <a class="menu-button" tabindex="0" href="javascript:void(0)">
+          <img src="img/menu.png">
+        </a>
+        <div class="menu-items flex-row-center flex-item">
+          <a class="menu-index" href="index.html">Hjem</a>
+          <a class="menu-hvitevarer" href="hvitevarer.html">Hvitevarer</a>
+          <a class="menu-pc" href="pc.html">PC og Data</a>
+          <div class="dropdown">
+            <a class="dropbtn" href="alleproduk.html">Alle produkter!<i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-content">
+              <a href="index.html">Hjem</a>
+              <a href="hvitevarer.html">Hvitevarer</a>
+              <a href="pc.html">PC og Data</a>
+            </div>
+          </div>
+          <div class="cart-icon">
+            <a href="cart.html"><img src="img/cart-icon.png" alt="Cart"></a>
+            <span class="cart-count">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Innhold -->
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h2>Powerbank</h2>
+            <div class="sort-view-container">
+              <div class="sort-container">
+                <label for="sort-products">Sorter etter:</label>
+                <select id="sort-products">
+                  <option value="price-asc">Pris: Lav til Høy</option>
+                  <option value="price-desc">Pris: Høy til Lav</option>
+                </select>
+              </div>
+              <div class="view-container">
+                <label for="view-mode">Visning:</label>
+                <select id="view-mode">
+                  <option value="grid">Grid</option>
+                  <option value="list">Liste</option>
+                </select>
+              </div>
+            </div>
+            <div class="products-container">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div class="footer-container"></div>
+</body>
+
+</html>

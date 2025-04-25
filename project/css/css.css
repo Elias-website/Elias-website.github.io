@@ -1,0 +1,756 @@
+/* Globale stiler for HTML og body */
+html,
+body {
+  margin: 0; /* Fjerner standard margin */
+  padding: 0; /* Fjerner standard padding */
+  background-color: white; /* Setter bakgrunnsfarge til hvit */
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; /* Definerer standard font */
+  left: 0; /* Plasserer elementet til venstre */
+  right: 0; /* Plasserer elementet til høyre */
+  width: auto; /* Setter bredden til automatisk */
+}
+
+/* Stiler for sterke og fete tekster */
+strong,
+b {
+  font-weight: bold; /* Gjør teksten fet */
+}
+
+/* Stiler for lenker */
+a {
+  outline: none; /* Fjerner fokusramme */
+  cursor: pointer; /* Endrer musepekeren til en peker */
+}
+
+/* Stiler for bilder og videoer */
+img,
+video {
+  -webkit-touch-callout: none; /* Deaktiverer kontekstmeny på iOS */
+  -webkit-user-select: none; /* Hindrer brukervalgt tekst på WebKit */
+  -khtml-user-select: none; /* Hindrer brukervalgt tekst på KHTML */
+  -moz-user-select: none; /* Hindrer brukervalgt tekst på Firefox */
+  -ms-user-select: none; /* Hindrer brukervalgt tekst på IE */
+  user-select: none; /* Hindrer brukervalgt tekst */
+}
+
+/* Overskriftsstiler */
+h1,
+h2,
+h3 {
+  color: #333333; /* Setter tekstfarge */
+  padding: 0; /* Fjerner padding */
+  font-weight: bold; /* Gjør teksten fet */
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; /* Definerer font */
+}
+
+/* Stiler for h1 */
+h1 {
+  font-size: 30px; /* Setter fontstørrelse */
+  margin: 30px 0 0 0; /* Setter toppmargin */
+}
+
+/* Stiler for h2 */
+h2 {
+  font-size: 24px; /* Setter fontstørrelse */
+  margin: 30px 0 0 0; /* Setter toppmargin */
+}
+
+/* Stiler for h3 */
+h3 {
+  font-size: 18px; /* Setter fontstørrelse */
+  margin: 10px 0 0 0; /* Setter toppmargin */
+}
+
+/* Stiler for lister */
+ul,
+ol {
+  margin: 10px 0; /* Setter topp- og bunnmargin */
+}
+
+/* Nestede lister */
+li ol,
+li ul {
+  margin: 0; /* Fjerner margin */
+}
+
+/* Stiler for horisontale linjer */
+hr {
+  border: 0; /* Fjerner standard kantlinje */
+  height: 1px; /* Setter høyde */
+  background: rgb(220, 220, 220); /* Setter bakgrunnsfarge */
+  margin: 0 0 10px 0; /* Setter bunnmargin */
+}
+
+/* Menybeholder */
+.menu-container {
+  z-index: 2; /* Setter lagrekkefølge */
+  position: relative; /* Relativ posisjonering */
+  width: 100%; /* Full bredde */
+  background-color: #333333; /* Mørk bakgrunnsfarge */
+  min-width: 300px; /* Minimum bredde */
+  -webkit-touch-callout: none; /* Deaktiverer kontekstmeny på iOS */
+  -webkit-user-select: none; /* Hindrer brukervalgt tekst på WebKit */
+  -khtml-user-select: none; /* Hindrer brukervalgt tekst på KHTML */
+  -moz-user-select: none; /* Hindrer brukervalgt tekst på Firefox */
+  -ms-user-select: none; /* Hindrer brukervalgt tekst på IE */
+  user-select: none; /* Hindrer brukervalgt tekst */
+  box-shadow: 0 0px 4px rgb(0 0 0 / 32%), 0 0px 10px rgb(0 0 0 / 23%); /* Legger til skygge */
+}
+
+/* Menyinnhold */
+.menu {
+  position: relative; /* Relativ posisjonering */
+  margin: 0 auto; /* Sentrerer innholdet */
+  max-width: 900px; /* Maksimal bredde */
+}
+
+/* Resten av filen følger samme mønster med norske kommentarer */
+/* Globale stiler for HTML og body-elementene */
+html,
+body {
+  margin: 0; /* Fjerner standard margin */
+  padding: 0; /* Fjerner standard padding */
+  background-color: white; /* Setter bakgrunnsfarge til hvit */
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; /* Definerer standard font */
+  left: 0; /* Plasserer elementet til venstre */
+  right: 0; /* Plasserer elementet til høyre */
+  width: auto; /* Setter bredden til automatisk */
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  left: 0;
+  right: 0;
+  width: auto;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+a {
+  outline: none;
+  cursor: pointer;
+}
+
+img,
+video {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1,
+h2,
+h3 {
+  color: #333333;
+  padding: 0;
+  font-weight: bold;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 30px 0 0 0;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 30px 0 0 0;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 10px 0 0 0;
+}
+
+ul,
+ol {
+  margin: 10px 0;
+}
+
+li ol,
+li ul {
+  margin: 0;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: rgb(220, 220, 220);
+  margin: 0 0 10px 0;
+}
+
+.menu-container {
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  background-color: #333333;
+  min-width: 300px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0 0px 4px rgb(0 0 0 / 32%), 0 0px 10px rgb(0 0 0 / 23%);
+}
+
+.menu {
+  position: relative;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.menu .menu-table {
+  padding: 0px 10px;
+  width: 100%;
+  margin: 0;
+}
+
+.menu .menu-highlight {
+  color: rgb(255, 255, 255) !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
+
+.menu .logo {
+  margin-left: 20px;
+}
+
+.menu .logo a {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Open Sans Condensed', Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  flex: 1 auto;
+  padding: 10px 0;
+}
+
+.menu .logo a:hover {
+  cursor: pointer;
+}
+
+.menu .logo img {
+  margin: 0;
+  padding: 0;
+}
+
+.menu .menu-button {
+  width: 40px;
+  height: 40px;
+  display: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.menu .menu-button img {
+  width: 30px;
+  height: 30px;
+}
+
+.menu .menu-items {
+  align-self: stretch;
+}
+
+.menu .menu-items>a,
+.menu .menu-items>div {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+  flex: 1 auto;
+  transition: opacity 0.1s ease-in-out;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu .menu-items>a:not(:last-child),
+.menu .menu-items>div:not(:last-child) {
+  margin-right: 25px;
+}
+
+.menu .menu-items>a:hover,
+.menu .menu-items>div:hover {
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.menu .menu-items .dropdown {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menu .menu-items .dropdown .dropbtn {
+  font-family: inherit;
+  text-decoration: inherit;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  transition: inherit;
+  white-space: inherit;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu .menu-items .dropdown i {
+  color: #ffffff;
+  margin-left: 5px;
+}
+
+.menu .menu-items .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 100%;
+  border-top: 3px solid #848484;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.menu .menu-items .dropdown .dropdown-content a {
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-size: 16px;
+}
+
+.menu .menu-items .dropdown .dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.menu .menu-items .dropdown .dropdown-content a:last-child:hover {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.menu .menu-items .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.content-container {
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  min-width: 300px;
+}
+
+.content {
+  position: relative;
+  margin: 0 auto;
+  font-size: 16px;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 900px;
+  overflow-x: auto;
+}
+
+.content p a,
+.content ul a,
+.content ol a {
+  text-decoration: none;
+  color: #005cbf;
+}
+
+.content p a:hover,
+.content ul a:hover,
+.content ol a:hover {
+  text-decoration: underline;
+}
+
+.content-table {
+  padding: 40px 10px;
+  width: 100%;
+  margin: 0;
+}
+
+.banner {
+  position: relative;
+  font-size: 16px;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  overflow-x: auto;
+  background-color: #005cbf;
+  display: flex;
+}
+
+.banner .banner-table {
+  padding: 0;
+  width: 100%;
+  margin: 0 auto;
+  align-self: flex-end;
+}
+
+.banner .banner-table a {
+  color: #a3cfff;
+  text-decoration: none;
+}
+
+.banner .banner-table a:hover {
+  text-decoration: underline;
+}
+
+.banner h1,
+.banner h2,
+.banner h3,
+.banner p,
+.banner span {
+  color: white;
+}
+
+.banner .flex-item {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 30px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+
+.flex-row-space-between {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  box-sizing: border-box;
+}
+
+.flex-item-stretch {
+  flex: 1 auto;
+}
+
+.flex-item {
+  margin: 0 20px;
+}
+
+.left-align {
+  float: left;
+}
+
+.right-align {
+  float: right;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.badge-text {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.text {
+  margin: 10px 0 10px 0;
+  padding: 0;
+}
+
+.text-large-margin {
+  margin: 15px 0 15px 0;
+  padding: 0;
+}
+
+.text-small-margin {
+  margin: 5px 0 5px 0;
+  padding: 0;
+}
+
+.text-no-margin {
+  margin: 0;
+  padding: 0;
+}
+
+.scrollable-image-container {
+  overflow: auto;
+  border: 1px solid #666666;
+  display: grid;
+  width: fit-content;
+  margin: 15px 0;
+}
+
+.scrollable-image-container.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scrollable-image {
+  border-radius: 2px;
+  margin: 0;
+  overflow: auto;
+  display: flex;
+}
+
+.scrollable-image.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image {
+  border-radius: 2px;
+  width: 100%;
+  margin: 15px 0;
+  display: flex;
+}
+
+.image.center {
+  align-self: center;
+}
+
+.image img,
+.image video {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: table-cell;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.adaptive-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image-wrap-text {
+  float: left;
+  margin: 5px 40px 25px 0;
+}
+
+.image-caption {
+  width: 100%;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.max-width-400 {
+  max-width: 400px;
+}
+
+.max-width-140 {
+  max-width: 140px;
+}
+
+
+
+
+.center-align-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-align-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.text-large {
+  font-size: 20px;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0px; /* Adjusted from -5px to 0px */
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+  .flex-item-stretch {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .logo {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .menu .menu-button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: stretch;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .menu .menu-button:focus {
+    pointer-events: none;
+  }
+
+  .menu .menu-button:focus+.menu-items {
+    display: block;
+  }
+
+  .menu .menu-button:focus+.menu-items>a,
+  .menu .menu-button:focus+.menu-items>div {
+    display: block;
+  }
+
+  .menu .menu-items {
+    display: none;
+    width: 100%;
+    margin-bottom: 10px;
+    align-self: baseline;
+  }
+
+  .menu .menu-items:hover {
+    display: block;
+  }
+
+  .menu .menu-items>a:not(:last-child),
+  .menu .menu-items>div:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .menu .menu-items>a,
+  .menu .menu-items>div {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .menu .menu-items .dropdown {
+    padding-bottom: 0;
+  }
+
+  .menu .menu-items .dropdown .dropdown-content {
+    margin-top: 10px;
+    position: relative;
+    display: block;
+    background-color: inherit;
+    color: inherit;
+    box-shadow: none;
+    border-top: 0;
+  }
+
+  .menu .menu-items .dropdown .dropdown-content a {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .menu .menu-items .dropdown .dropdown-content a::before {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 0.25em;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    vertical-align: top;
+    opacity: 0.5;
+  }
+
+  .menu .menu-items .dropdown .dropdown-content a:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+
+  .menu .menu-items .dropdown .dropbtn {
+    margin-top: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .image-wrap-text {
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
+}

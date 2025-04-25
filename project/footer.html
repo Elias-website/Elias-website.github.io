@@ -1,0 +1,118 @@
+<!-- Banner-div -->
+<div class="banner">
+  <!-- Tabell for bannerinnhold -->
+  <div class="banner-table flex-column">
+    <!-- Rad for innhold -->
+    <div class="flex-row">
+      <!-- Kolonne for tekstinnhold -->
+      <div class="flex-item flex-column">
+        <!-- Overskrift -->
+        <h2>Velkommen til vår butikk</h2>
+        <!-- Avsnitt med tekst og lenke -->
+        <p class="text add-bottom-margin-large">
+          Vi tilbyr eit breitt utval av elektroniske produkt til konkurransedyktige prisar. Utforsk sortimentet vårt og finn det du treng.
+        </p>
+        <a href="#" id="openVideoModal">Sjå vår nyaste video om produktfunksjonar her</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Legg til en modal popup for videoen -->
+<div id="videoModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span> <!-- Lukkeknappen for modalen -->
+    <video controls>
+      <source src="img/video.mp4" type="video/mp4">
+      Nettleseren din støtter ikke videoelementet. <!-- Informasjon til brukeren hvis videoen ikke kan spilles av -->
+    </video>
+  </div>
+</div>
+
+<!-- Oppdater stiler for en mer moderne modal -->
+<style>
+  .modal {
+    display: none; /* Skjult som standard */
+    position: fixed; /* Holder seg på plass */
+    z-index: 1000; /* Ligger på toppen */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full bredde */
+    height: 100%; /* Full høyde */
+    overflow: hidden; /* Deaktiver rulling */
+    background-color: rgba(0, 0, 0, 0.8); /* Svart med gjennomsiktighet */
+    backdrop-filter: blur(5px); /* Legg til uskarphetseffekt */
+  }
+
+  .modal-content {
+    background-color: #ffffff; /* Bakgrunnsfarge for modalinnholdet */
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px; /* Runde hjørner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Skyggeeffekt */
+    width: 60%; /* Juster bredde */
+    max-width: 800px; /* Maksimal bredde */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* Sentraliser modal vertikalt */
+    animation: fadeIn 0.3s ease-in-out; /* Animasjon for å fade inn */
+  }
+
+  .close {
+    color: #333; /* Farge på lukkeknappen */
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer; /* Gjør knappen klikkbar */
+    transition: color 0.3s; /* Overgangseffekt for fargeendring */
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #ff0000; /* Endre farge ved hover eller fokus */
+    text-decoration: none; /* Fjern understrekning */
+  }
+
+  video {
+    width: 100%; /* Videoen fyller hele bredden */
+    border-radius: 8px; /* Runde hjørner på videoen */
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0; /* Start med usynlig */
+    }
+    to {
+      opacity: 1; /* Gjør synlig */
+    }
+  }
+</style>
+
+<!-- Legg til JavaScript for modal-funksjonalitet -->
+<script>
+  // Hent modalen
+  var modal = document.getElementById("videoModal");
+
+  // Hent knappen som åpner modalen
+  var btn = document.getElementById("openVideoModal");
+
+  // Hent <span>-elementet som lukker modalen
+  var span = document.getElementsByClassName("close")[0];
+
+  // Når brukeren klikker på knappen, åpne modalen
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // Når brukeren klikker på <span> (x), lukk modalen
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Når brukeren klikker utenfor modalen, lukk den
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>

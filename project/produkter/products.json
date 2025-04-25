@@ -1,0 +1,327 @@
+[
+  {
+    "id": 1,
+    "name": "Kjøleskap Frost",
+    "description": "Stilrent kjøleskap med frostfri teknologi.",
+    "price": 7500,
+    "image": "img/p1.png",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "name": "Oppvaskmaskin Clean",
+    "description": "Kompakt oppvaskmaskin med energiklasse A+.",
+    "price": 5000,
+    "image": "img/p2.png",
+    "stock": 8
+  },
+  {
+    "id": 3,
+    "name": "Kjøleskap Rapid",
+    "description": "Effektivt kjøleskap med hurtigkjøling.",
+    "price": 15000,
+    "image": "img/p3.jpg",
+    "stock": 6
+  },
+  {
+    "id": 4,
+    "name": "Vaskemaskin Breeze",
+    "description": "Moderne Vaskemaskin med lavt energiforbruk.",
+    "price": 7000,
+    "image": "img/p4.png",
+    "stock": 5
+  },
+  {
+    "id": 5,
+    "name": "Coca Cola kjøleskap",
+    "description": "Eit kjøleskap med kult design og topp kvalitet.",
+    "price": 8500,
+    "image": "img/p5.png",
+    "stock": 4
+  },
+  {
+    "id": 6,
+    "name": "Bærbar PC Basic",
+    "description": "Prisgunstig bærbar PC for hverdagsbruk.",
+    "price": 4500,
+    "image": "img/p6.png",
+    "stock": 10
+  },
+  {
+    "id": 7,
+    "name": "Gaming PC Ultra",
+    "description": "Høyytelses gaming PC med kraftig grafikkort.",
+    "price": 15000,
+    "image": "img/p7.png",
+    "stock": 5
+  },
+  {
+    "id": 8,
+    "name": "Gaming tastatur",
+    "description": "Tastatur med topp kvalitet og spesialisert for gaming",
+    "price": 8000,
+    "image": "img/p8.png",
+    "stock": 7
+  },
+  {
+    "id": 9,
+    "name": "Mikrofon pro",
+    "description": "God mikrofon med fantastisk kvalitet.",
+    "price": 6000,
+    "image": "img/p9.png",
+    "stock": 8
+  },
+  {
+    "id": 10,
+    "name": "Ultra tastatur",
+    "description": "Lett og behagleg tastatur.",
+    "price": 12000,
+    "image": "img/p10.png",
+    "stock": 6
+  },
+  {
+    "id": 11,
+    "name": "Gaming mus",
+    "description": "Rask gaming mus med avansert kjøling.",
+    "price": 18000,
+    "image": "img/p11.png",
+    "stock": 4
+  },
+  {
+    "id": 12,
+    "name": "Skjerm pro",
+    "description": "Perfekt for arbeid og gaming.",
+    "price": 700,
+    "image": "img/p12.png",
+    "stock": 15
+  },
+  {
+    "id": 13,
+    "name": "Mekanisk Tastatur RGB",
+    "description": "Gaming-tastatur med RGB-belysning og mekaniske tastar.",
+    "price": 2000,
+    "image": "img/p13.png",
+    "stock": 12
+  },
+  {
+    "id": 14,
+    "name": "Go pro",
+    "description": "Kamaraet som fangar alle opplevelsar.",
+    "price": 8000,
+    "image": "img/p14.png",
+    "stock": 7
+  },
+  {
+    "id": 15,
+    "name": "Go pro max",
+    "description": "Perfekt for deg som vil dokumentere opplevelsar.",
+    "price": 1000,
+    "image": "img/p15.png",
+    "stock": 15
+  },
+  {
+    "id": 16,
+    "name": "Kamera ",
+    "description": "Kamera som tåler vatn og er klar for å utforske.",
+    "price": 6000,
+    "image": "img/p16.png",
+    "stock": 10
+  },
+  {
+    "id": 17,
+    "name": "Powerbank rosa",
+    "description": "Rask og enkel måte å lade på i naturen.",
+    "price": 7000,
+    "image": "img/p17.png",
+    "stock": 8
+  },
+  {
+    "id": 18,
+    "name": "Powerbank kvit",
+    "description": "Har du ingen tilgan til stikkontakt er dette din beste venn.",
+    "price": 8000,
+    "image": "img/p18.png",
+    "stock": 6
+  },
+  {
+    "id": 19,
+    "name": "Galaxy watch Ultra",
+    "description": "Klokke perfekt for trening.",
+    "price": 9000,
+    "image": "img/p19.png",
+    "stock": 4
+  },
+  {
+    "id": 20,
+    "name": "Watch run pro",
+    "description": "Klokke perfekt for turlystne.",
+    "price": 10000,
+    "image": "img/p20.png",
+    "stock": 2
+  },
+  {
+    "id": 21,
+    "name": "Apple watch",
+    "description": "Perfekt for barn uten mobil",
+    "price": 1100,
+    "image": "img/p21.png",
+    "stock": 10
+  },
+  {
+    "id": 22,
+    "name": "Telfon pro max",
+    "description": "Billig og enkel telefon.",
+    "price": 2200,
+    "image": "img/p22.png",
+    "stock": 8
+  },
+  {
+    "id": 23,
+    "name": "Iphone",
+    "description": "Mega kvalitet og enkel å bruke.",
+    "price": 3300,
+    "image": "img/p23.png",
+    "stock": 6
+  },
+  {
+    "id": 24,
+    "name": "Samsung Galaxy",
+    "description": "Ekstremt god telefon som kjøperane drømmar om",
+    "price": 4400,
+    "image": "img/p24.png",
+    "stock": 4
+  },
+  {
+    "id": 25,
+    "name": "Iphone 15",
+    "description": "En telefon du ikkje kan gå glipp av",
+    "price": 5500,
+    "image": "img/p25.png",
+    "stock": 12
+  },
+  {
+    "id": 26,
+    "name": "Iphone 14",
+    "description": "Kjempe telefon med magiske kvalitetar",
+    "price": 6600,
+    "image": "img/p26.png",
+    "stock": 7
+  },
+  {
+    "id": 27,
+    "name": "Telefon supra",
+    "description": "Telefon med dei nyaste kvalitatane",
+    "price": 7700,
+    "image": "img/p27.png",
+    "stock": 5
+  },
+  {
+    "id": 28,
+    "name": "Telefon Oled",
+    "description": "Lett å bruke, perfekte kvaliteter og fine detaljar.",
+    "price": 8800,
+    "image": "img/p28.png",
+    "stock": 3
+  },
+  {
+    "id": 29,
+    "name": "Iphone mega",
+    "description": "Telefon som ropar perfekt!",
+    "price": 9900,
+    "image": "img/p29.png",
+    "stock": 2
+  },
+  {
+    "id": 30,
+    "name": "Iphone max 44",
+    "description": "Nyaste versjonen du berre kan drømme om.",
+    "price": 10000,
+    "image": "img/p30.png",
+    "stock": 1
+  },
+  {
+    "id": 31,
+    "name": "Headsett Gold",
+    "description": "Headsett med gullkvalitet.",
+    "price": 1200,
+    "image": "img/p31.png",
+    "stock": 10
+  },
+  {
+    "id": 32,
+    "name": "Phillips Earbuds",
+    "description": "Pods med høg kvalitet",
+    "price": 2400,
+    "image": "img/p32.png",
+    "stock": 8
+  },
+  {
+    "id": 33,
+    "name": "Headsett max",
+    "description": "Headsett som skapar magisk lyd.",
+    "price": 3600,
+    "image": "img/p33.png",
+    "stock": 6
+  },
+  {
+    "id": 34,
+    "name": "Airpods pro",
+    "description": "Airpods med dei nyaste kvalitetane.",
+    "price": 4800,
+    "image": "img/p34.png",
+    "stock": 4
+  },
+  {
+    "id": 35,
+    "name": "Headsett mega",
+    "description": "Stort og behaglig headsett.",
+    "price": 6000,
+    "image": "img/p35.png",
+    "stock": 2
+  },
+  {
+    "id": 36,
+    "name": "Ladar",
+    "description": "Hurtigladar for alle kompatible enhetar.",
+    "price": 299,
+    "image": "img/p36.png",
+    "stock": 15,
+    "category": "ladere"
+  },
+  {
+    "id": 37,
+    "name": "Ladar ultra",
+    "description": "Kompakt og kraftig ladar",
+    "price": 199,
+    "image": "img/p37.png",
+    "stock": 20,
+    "category": "ladere"
+  },
+  {
+    "id": 38,
+    "name": "Trip ladar",
+    "description": "Ladar for bruk i bilen med to USB-portar.",
+    "price": 149,
+    "image": "img/p38.png",
+    "stock": 30,
+    "category": "ladere"
+  },
+  {
+    "id": 39,
+    "name": "Multiport Ladar",
+    "description": "Ladar fleire enhetar samtidig.",
+    "price": 399,
+    "image": "img/p39.png",
+    "stock": 10,
+    "category": "ladere"
+  },
+  {
+    "id": 40,
+    "name": "Chill ladar",
+    "description": "Lett ladar til huslading.",
+    "price": 249,
+    "image": "img/p40.png",
+    "stock": 25,
+    "category": "ladere"
+  }
+]
